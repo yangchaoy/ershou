@@ -1,0 +1,49 @@
+@import '../../style/common.wxss';
+.weui-cell:before,.weui-cell:after {
+  border: none;
+}
+.weui-cells:before,.weui-cell:before {
+  border-top: none;
+  border-bottom: none;
+}
+.course-item-list {
+  border-top: none;
+}
+.course-item-list p,.course-item-list,.weui-cell__bd  {
+  color: #969695;
+}
+.org-detail-img {
+  padding: 10px 15px 10px;
+}
+.org-detail-list {
+  float: left;
+  width: 32.5%;
+  /* height: 146rpx; */
+  height: 200rpx;
+  margin-right: 1.25%;
+  margin-bottom: 8rpx;
+}
+.org-detail-img image {
+ display: block;
+  /* height:146rpx; */
+  height: 200rpx;
+  width: 100%;
+}
+.org-detail-img .org-detail-list:nth-child(3n) {
+  float: right;
+  margin-right: 0;
+}
+.org-detail-img:before {
+  display: none;
+}
+.info-font-size {
+  margin-top: 6px;
+}
+.info-font-size p {
+  padding: 0 20px;
+  line-height: 22px;
+  display: block;
+  font-size: 14px;
+  color: #000;
+  margin-bottom: 6px;
+}

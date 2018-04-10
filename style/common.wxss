@@ -1,0 +1,330 @@
+.page {
+  font-family: 'STHeitiSC Light';
+  padding-bottom: 66px;
+}
+
+.slider-img-wrap {
+  width: 100%;
+  /* height: 221px; */
+  height: 460rpx;
+}
+
+.slider-img-wrap image, .slider-img {
+  display: block;
+  width: 100%;
+  /* height: 221px; */
+  height: 460rpx;
+}
+
+.address {
+  display: inline-block;
+  width: 14px;
+  height: 17px;
+  position: relative;
+  top: 3px;
+  margin-right: 5px;
+}
+
+.border-bottom {
+  padding: 13px 15px 12px;
+ 
+}
+
+.weui-cells .border-bottom:first-child {
+  border-top: none;
+}
+
+.border-bottom .weui-cell__bd {
+  text-indent: 20rpx;
+  height: 16px;
+  font-size: 15px;
+  line-height: 16px;
+  position: relative;
+  top: 0;
+  left: 0;
+  /* border-left: 3px #ff5b5b solid;
+   border-radius: 1px;  */
+}
+
+ /* .border-bottom .weui-cell__bd:before {
+  content: '';
+  height: 14px;
+  width: 4px;
+  border-radius: 2px;
+  background-color: #ff5b5b;
+  position: absolute;
+  left: -1px;
+  top: 1px;
+}  */
+.border-bottom .weui-cell__bd abbr {
+  content: '';
+  height: 14px;
+  width: 4px;
+  border-radius: 2px;
+  background-color: #ff5b5b;
+  position: absolute;
+  left: -1px;
+  top: 1px;
+}
+.org-list-wrap {
+  padding: 12px 15px;
+}
+
+.org-list-wrap image {
+  width: 60px;
+  height: 45px;
+  display: block;
+}
+
+.org-list-wrap .info {
+  color: #888;
+  font-size: 13px;
+   overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.org-list-wrap .money {
+  color: #ff5b5b;
+  font-size: 17px;
+  padding-right: 20px;
+}
+
+.org-list-wrap .weui-cell__hd {
+  position: relative;
+  margin-right: 10px;
+}
+
+.org-teacher-wrap {
+  width:104px;
+  float: left;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.org-teacher-wrap image {
+  width:75px;
+  height: 75px;
+  margin: 0 auto;
+  display: block;
+  border-radius: 100%;
+}
+
+.org-teacher-wrap span {
+  display: block;
+  margin-top: 7px;
+  line-height: 18px;
+  font-size: 15px;
+}
+
+.org-teacher-wrap span abbr {
+  color: #b7b7b7;
+  font-size: 12px;
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.org-detail-wrap {
+  padding: 10px 15px 0px;
+}
+
+.org-detail-wrap .title {
+  line-height: 26px;
+  font-size: 15px;
+  color: #000;
+  width: 100%;
+  display: block;
+}
+
+.org-detail-img .weui-cell__bd image {
+  /* margin: 0 auto; */
+}
+
+.fixed-footer {
+  position: fixed;
+  bottom: 0;
+  z-index: 101;
+  height: 56px;
+  width: 100%;
+  background-color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  border-top: 1rpx #f2f3f7 solid;
+}
+
+.fixed-footer .weui-cell__hd {
+  width: 151px;
+  text-align: center;
+  height: 57px;
+  background-color: #ff5b5b;
+  line-height: 57px;
+  font-size: 18px;
+  color: #fff;
+}
+
+.fixed-footer .weui-cell__bd {
+  font-size: 12px;
+  text-align: center;
+  color: #818181;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.fixed-footer .weui-cell__bd image {
+  display: block;
+  width: 13.5px;
+  height: 20px;
+  margin: 8px auto 2px;
+}
+
+.fixed-footer .weui-cell__bd button {
+  width: 100%;height: 57px;
+  color: #818181;font-size: 12px;
+  background-color: #fff;
+  border: none;
+  border-radius: 0;
+  line-height: 16px;
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+.fixed-footer .weui-cell__bd:nth-child(2) image {
+  width: 17.5px;
+}
+.fixed-footer .weui-cell__bd:nth-child(3) image {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 8px auto 2px;
+}
+
+.course-item-list {
+  padding: 15px 15px 15px;
+  border-top: 1rpx #f2f3f7 solid;
+}
+
+.course-item-list p {
+  display: block;
+  width: 100%;
+  line-height: 24px;
+  position: relative;
+  top: 0;
+  left: 0;
+  /* padding-left: 12px; */
+}
+
+/* .course-item-list p:before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  left: 0px;
+  top: 8.5px;
+  background-color: #ababab;
+  height: 8px;
+  border-radius: 100%;
+} */
+
+::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+  color: transparent;
+}
+
+.ft15 {
+  font-size: 15px;
+}
+
+.brand-desc {
+  padding: 0 15px;
+  /* text-indent: 1.5em; */
+  display: block;
+}
+
+.back-color {
+  background-color: #f7f7f7;
+}
+
+.new-course-lis-wrap {
+  margin: 10px 15px 0px;
+}
+
+.new-course-list {
+  background-color: #f2f3f7;
+  width: 48%;
+  border-radius: 2.5px;
+  overflow: hidden;
+  float: left;
+  margin-bottom: 13px;
+}
+
+.new-course-list image {
+  display: block;
+  width: 100%;
+  height: 204rpx;
+  border-top-right-radius: 2.5px;
+  border-top-left-radius: 2.5px;
+}
+
+.new-course-list:nth-child(2n) {
+  float: right;
+}
+
+.new-course-list span {
+  background-color: #fff;
+  line-height: 70rpx;
+  text-align: center;
+  width: 100%;
+  font-size: 28rpx;
+  color: #000;
+  display: block;
+  border-bottom-right-radius: 2.5px;
+  border-bottom-left-radius: 2.5px;
+}
+
+.new-course-list .weui-cell__bd:last-child p {
+  float: right;
+}
+
+.weui-footer {
+  padding: 15px 0 20px;
+  text-align: center;
+  font-size: 13px;
+  opacity: 0.5;
+  /* background-color: #fff; */
+}
+
+.weui-footer__text {
+  font-size: 12px;
+}
+
+.weui-footer image {
+  width: 50rpx;
+  height: 46rpx;
+  display: block;
+  margin: 0 auto;
+}
+
+.weui-footer p {
+  font-size: 20rpx;
+  line-height: 42rpx;
+}
+.slider-img-wrap {
+  background: url('https://img.meiyuol.com/825c1e45cc34e60df8138f217d66082c.jpg') no-repeat center;
+  background-size: 87rpx 115rpx;
+  background-color: #f7f7f7;
+}

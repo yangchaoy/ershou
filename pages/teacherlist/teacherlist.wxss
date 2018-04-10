@@ -1,0 +1,14 @@
+@import '../../style/common.wxss';
+.org-list-wrap image {
+  width: 60px;
+  height: 60px;
+  display: block;
+  
+}
+.weui-cell:before,.weui-cell:after {
+  border: none;
+}
+.weui-cells:before,.weui-cell:before {
+  border-top: none;
+  border-bottom: none;
+}

@@ -1,0 +1,19 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/courselist/courselist",
+    "pages/courseinfo/courseinfo",
+    "pages/teacherlist/teacherlist",
+    "pages/teacherinfo/teacherinfo",
+    "pages/appointment/appointment",
+    "pages/brandintro/brandintro",
+    "pages/campus/campus",
+    "pages/showvideo/showvideo"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#c6eaf9",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle":"#01617b"
+  }
+}

@@ -1,0 +1,29 @@
+<view class="page">
+  <view hidden="{{showLoading}}">
+    <import src="../../template/loading.wxml" />
+    <template is="item" data="" />
+  </view>
+  <view hidden="{{!showLoading}}">
+    <view class="address-top" style="background-color: {{confrimBgColot}};color: {{confrimFtColot}}">
+      <image src="{{logo}}"></image>
+      <span style="color: {{confrimFtColot}}">共{{xiaoNum}}家</span>
+    </view>
+    <view class="address-list" wx:for="{{storeListData}}" wx:for-index="idx" wx:key="">
+      <p style="color: {{confrimBgColot}}">{{item.name}}</p>
+      <span>
+        <image class="address-icon" src="../../images/address.png"></image>{{item.address}}</span>
+      <span>
+        <image class="address-phone" src="../../images/tel.png"></image>{{item.phone}}</span>
+      <view class="check-address-wrap">
+        <view class="btn" bindtap="bindShowMap" data-index="{{idx}}">
+          <image src="../../images/address-icon.png"></image>查看地图</view>
+        <view class="btn" bindtap="bindMakePhone" data-phone="{{item.phone}}">
+          <image src="../../images/phone-two.png"></image>拨打电话</view>
+      </view>
+    </view>
+    <view class="weui-footer" wx:if="{{storeListData.length >= 3}}">
+      <image src="../../images/default-logo.png"></image>
+      <p>番茄助教提供技术支持</p>
+    </view>
+  </view>
+</view>

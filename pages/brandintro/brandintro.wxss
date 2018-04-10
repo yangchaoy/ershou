@@ -1,0 +1,32 @@
+@import '../../style/common.wxss';
+::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+  color: transparent;
+}
+.weui-cell {
+  padding: 8px 15px;
+}
+.weui-cells:before,.weui-cells:after {
+  content: '';
+  border: none;
+}
+.page {
+  padding-bottom: 58px;
+}
+.org-detail-wrap {
+  position: relative;
+  top: 0;
+  left: 0;
+  border-top: 1rpx solid #f2f3f7;
+}
+/* .org-detail-wrap:before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 15px;
+  height: 1px;
+  border-top: 1rpx solid #f2f3f7;
+  color: #f2f3f7;
+  left: 15px;
+} */

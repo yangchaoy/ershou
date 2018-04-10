@@ -1,0 +1,72 @@
+@import 'style/weui.wxss';
+
+page {
+  background-color: #f7f7f7;
+  font-size: 14px;
+  font-family: STHeiti SC Light, Microsoft YaHei, sans-serif;
+  overflow-x: hidden;
+}
+
+.weui-cell__ft {
+  font-size: 14px;
+}
+
+.weui-cells__title {
+  margin: 5px 0;
+  padding: 0 15px;
+  font-size: 13px;
+}
+
+.clearfix:after {
+  content: ' ';
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+.padding0 {
+  padding: 0;
+}
+
+.weui-input {
+  height: 24px;
+  line-height: 24px;
+  min-height: 24px;
+}
+
+button[type="warn"], button[type="primary"] {
+  color: #fff;
+  background-color: #f15252;
+}
+
+button[type="warn"].button-hover {
+  background-color: #f15252;
+  opacity: 0.6;
+}
+
+.mt30 {
+  margin-top: 30px;
+}
+
+.weui_toptips {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  line-height: 2.3;
+  font-size: 14px;
+  text-align: center;
+  color: #fff;
+  z-index: 100101;
+}
+
+.weui_toptips.weui_warn {
+  background-color: #f2e692;
+  color: #000;
+}
+
+.common-null-tip {
+  color: #576b95;
+  font-size: 12px;
+}

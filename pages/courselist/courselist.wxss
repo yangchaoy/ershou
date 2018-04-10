@@ -1,0 +1,14 @@
+@import '../../style/common.wxss';
+.weui-cell:nth-child(2):before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 0px;
+  height: 1px;
+  border-top: 1rpx solid #f2f3f7;
+  color: #f2f3f7;
+  left: 0px;
+}
+.page {
+  padding-bottom: 0px;
+}

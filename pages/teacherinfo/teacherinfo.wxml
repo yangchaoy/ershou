@@ -1,0 +1,92 @@
+<view class="page">
+  <view hidden="{{showLoading}}">
+    <import src="../../template/loading.wxml" />
+    <template is="item" data="" />
+  </view>
+  <view hidden="{{!showLoading}}">
+    <view class="index-top">
+      <view class="slider-img-wrap" wx:if="{{teacher.banner.length > 0}}">
+        <image src="{{teacher.banner[0]}}" class="slide-image" />
+      </view>
+      <view class="weui-cells weui-cells_after-title back-color">
+        <view class="weui-cell">
+          <view class="weui-cell__bd" style="font-size: 16px;color: #000;">
+            {{teacher.name}}
+          </view>
+          <view class="weui-cell__bd weui-cell__ft">
+            {{teacher.teaching_age}}年教龄
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells weui-cells_after-title back-color" bindtap="bindShowAllCourses">
+      <view class="weui-cell border-bottom">
+        <view class="weui-cell__bd">{{titleArr.index_2_1}}
+          <abbr style="background-color: {{confrimBgColot}};"></abbr>
+        </view>
+      </view>
+      <view class="info-font-size">
+        <p>{{teacher.course_desc}}</p>
+      </view>
+    </view>
+    <view wx:if="{{teacher.desc!=''}}">
+
+      <view class="weui-cells weui-cells_after-title back-color" bindtap="bindShowAllTeachers">
+        <view class="weui-cell border-bottom">
+          <view class="weui-cell__bd">{{titleArr.index_2_2}}
+            <abbr style="background-color: {{confrimBgColot}};"></abbr>
+          </view>
+        </view>
+      </view>
+      <view class="info-font-size" style="padding: 0;text-indent: 0;">
+        <p>{{teacher.desc}}</p>
+      </view>
+    </view>
+    <view wx:if="{{teacher.rewards_desc!=''}}">
+      <view class="weui-cells weui-cells_after-title back-color" bindtap="bindShowAllCourses">
+        <view class="weui-cell border-bottom">
+          <view class="weui-cell__bd">{{titleArr.index_2_3}}
+            <abbr style="background-color: {{confrimBgColot}};"></abbr>
+          </view>
+        </view>
+        <view class="info-font-size">
+          <p wx:for="{{teacher.rewards_desc}}" wx:key="">{{item}}</p>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells weui-cells_after-title  back-color" wx:if="{{teacher.banner.length > 0}}">
+      <view class="weui-cell border-bottom">
+        <view class="weui-cell__bd">{{titleArr.index_2_4}}
+          <abbr style="background-color: {{confrimBgColot}};"></abbr>
+        </view>
+      </view>
+      <view class="org-detail-img  clearfix">
+        <view class="org-detail-list" wx:for="{{teacher.banner_small}}" data-len="{{brand_info.env.length}}" wx:for-index="idx" wx:key="">
+          <image src="{{item}}" mode="aspectFill" bindtap="showimage" data-itemkey="{{idx}}" />
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-footer">
+      <image src="../../images/default-logo.png"></image>
+      <p>番茄助教提供技术支持</p>
+    </view>
+  </view>
+</view>
+<view class="fixed-footer" hidden="{{!showLoading}}">
+  <view class="weui-cell__bd">
+    <image src="../../images/share.png"></image>分享
+    <button open-type="share"></button>
+  </view>
+  <view class="weui-cell__bd" bindtap="bindShowMoreCampus">
+    <image src="../../images/xiaoqu.png"></image>{{titleArr.index_tab_2}}
+  </view>
+  <view class="weui-cell__bd" bindtap="makePhoneCall">
+    <image src="../../images/tel.png"></image>电话
+  </view>
+  <view class="weui-cell__hd" bindtap="bindAppoint" style="background-color: {{confrimBgColot}};color: {{confrimFtColot}}">
+    {{titleArr.index_tab_4}}
+  </view>
+</view>

@@ -1,0 +1,15 @@
+{
+  "extEnable": true,
+  "extAppid":"wx48f0790e116b6900",
+  "ext": {
+      "org_id": 19,
+      "brand_id": 47,
+      "org_name": "汇桥演示",
+      "appid":"wx056407670f51c719",
+      "template_id": "0",
+      "host":"https://api.dev.meiyuol.com"
+     
+  }
+}
+
+  
