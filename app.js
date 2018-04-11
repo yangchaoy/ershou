@@ -1,22 +1,32 @@
-//app.js
+var util = require('utils/util.js');
 App({
+  commonPageNum: 80,
+  userInfo: '',
 
-  orgLogo: '',
-  curBgColor: '',
-  curFtColor: '',
-  videoUrl: '',
-  appointImg: '',
-  videoPoster: '',
-  fontSize: 20,
+  allTitleObj: {'regsiterTitle': '用户登录注册'},
+
   onLaunch: function () {
-      var extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {}
-      console.log(wx.getExtConfigSync());
-      this.globalData.extConfig = extConfig
+   
   },
 
-  globalData:{
-      extConfig:null,
-      phone:"",
-      org_info:null
+  getUserInfo:function(cb){
+    var that = this
+    if (this.userInfo) {
+      typeof cb == "function" && cb(this.userInfo)
+    } else {
+      //调用登录接口
+      wx.login({
+        success: function () {
+          wx.getUserInfo({
+            success: function (res) {
+              that.userInfo = res.userInfo
+              typeof cb == "function" && cb(that.userInfo)
+            }
+          })
+        }
+      })
+
+    }
   }
-})
+  
+});

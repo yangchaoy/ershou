@@ -1,141 +1,79 @@
 <view class="page">
-  <view hidden="{{showLoading}}">
-    <import src="../../template/loading.wxml" />
-    <template is="item" data="{{text: 'forbar'}}" />
-  </view>
-  <view class="unshow-loading" hidden="{{!showLoading}}">
-    <view class="index-top slider-img-wrap">
-       <image src="{{brand_info.gallery[0]}}" class="slide-image" /> 
-    </view>
-    <view class="show-org-info-wrap" hidden="{{showOne}}">
-      <p wx:for="{{brandescInfo}}" data-len="{{brandescInfo.length}}" style="font-size: 16px; margin-bottom: {{brandescInfo.length == 1 ? '0': '10px'}}" wx:key="" wx:for-index="idx">{{item}}
-      </p>
-      <span class=" weui-cell__ft common-null-tip" style="text-align: left;margin-top: {{brandescInfo.length > 1 ? '-10px' : '0px'}};line-height: 28px;display:{{showDown == true ? 'none' : 'block'}}" bindtap="showOneInfo">收起</span>
-    </view>
-    <view class="show-org-info-wrap" hidden="{{!showOne}}">
-      <span style="font-size: 16px;">{{showBranddesc}}
-
-      </span>
-      <a class=" weui-cell__ft common-null-tip" style="text-align: left;display: block;line-height: 28px;" href="javascript:void(0)" bindtap="showAllInfo">展示全部</a>
-    </view>
-    <view class="weui-cells__title all-tip"></view>
-    <view class="weui-cells weui-cells_after-title back-color">
-      <view class="weui-cell border-bottom">
-        <view class="weui-cell__bd">{{titleArr.index_1}}
-          <abbr style="background-color: {{confrimBgColot}};"></abbr>
-        </view>
-        <view class=" weui-cell__ft webkit-box-flex common-null-tip" data-len="{{course_list.length}}" wx:if="{{course_list.length > 6}}" bindtap="bindShowAllCourses">全部</view>
+  <view class="weui-cells__title all-tip">
+    <image src="../../images/address.png"></image>北京市朝阳区通惠河大厦15层</view>
+  <view class="weui-cells order-list  border-none com-bg-color">
+    <view class="weui-cell">
+      <view class="weui-cell__hd clearfix">
+        <image src="https://img.meiyuol.com/181/org_yBF35c4MhS6BTxpcKhkzebM.png/spic"></image>
       </view>
-      <view wx:if="{{course_list.length == 1}}">
-        <view class="new-course-list" style="width: auto;display: block;float: none;margin: 0 15px;" bindtap="bindShowCourseInfo" wx:for="{{course_list}}" wx:key="" wx:for-index="idx" data-id="{{item.id}}">
-          <!-- <view class="weui-cell__bd"> -->
-            <image style="width: 100%;height: 458rpx;border-radius: 2.5px;" src="{{item.logo}}" />
-            <span style="text-align: left;text-indent: 1em;">{{item.name}}</span>
-          <!-- </view> -->
-          <!-- <view class="weui-cell__bd" style="margin-left: 5px;">
-            <view style="font-size: 15px;position: relative;top: -3px;color: #000;">{{item.name}}</view>
-            <view class="info" style="font-size: 12px;line-height: 18px;">{{item.application_desc}}教龄</view>
-            <view class="info" style="font-size: 12px;line-height: 18px;">{{item.character_desc}}</view>
-          </view> -->
-        </view>
-      </view>
-      <view class="new-course-lis-wrap clearfix" wx:else="">
-        <p class="new-course-list fl" wx:for="{{course_list}}" bindtap="bindShowCourseInfo" wx:key="" wx:for-index="idx" data-id="{{item.id}}" wx:if="{{idx<6}}">
-          <image src="{{item.logo}}"></image>
-          <span>{{item.name}}</span>
-        </p>
+      <view class="weui-cell__bd order-info rl clearfix">
+        <text class="weui-media-box__title">娃哈哈</text>
+        <p class="weui-media-box__desc">北京市海淀区 | 距你2.3公里 | 29分钟前来过</p>
       </view>
     </view>
-    <view class="weui-cells weui-cells_after-title back-color" hidden="{{teacher_list.length==0}}">
-      <view class="weui-cell border-bottom">
-        <view class="weui-cell__bd">{{titleArr.index_2}}
-          <abbr style="background-color: {{confrimBgColot}};"></abbr>
-        </view>
-        <view class=" weui-cell__ft webkit-box-flex common-null-tip" data-len="{{teacher_list.length}}"></view>
+    <scroll-view class="scroll-view_H" scroll-x>
+      <view class="img-list-wrap clearfix" style="min-width: 960rpx;">
+        <image src="https://img.meiyuol.com/181/org_yBF35c4MhS6BTxpcKhkzebM.png/spic" />
+        <image src="https://img.meiyuol.com/181/org_yBF35c4MhS6BTxpcKhkzebM.png/spic" />
+        <image src="https://img.meiyuol.com/181/org_yBF35c4MhS6BTxpcKhkzebM.png/spic" />
+        <image src="https://img.meiyuol.com/181/org_yBF35c4MhS6BTxpcKhkzebM.png/spic" />
       </view>
-      <view>
+    </scroll-view>
+    <p class="order-intro">服务号：为企业和组织提供更强大的业务服务与用户管理能力，主要偏向服务类交互（功能类似12315，114，银行，提供绑定信息，服务交互的）；</p>
+    <view class="weui-cell show-info-wrap">
+      <view class="weui-cell__bd clearfix">
+        免费
       </view>
-    </view>
-
-    <view class="weui-cells weui-cells_after-title back-color" hidden="{{teacher_list.length==0}}" wx:if="{{teacher_list.length < 4}}">
-      <view class="weui-cell org-list-wrap" bindtap="bindShowTeacherInfo" wx:for="{{teacher_list}}" wx:key="" data-id="{{item.id}}" style='background-color: #fff;border-radius: 2.5px;margin: 0 15px 10px;'>
-        <view class="weui-cell__bd" style="margin-left: 10px;">
-          <view style="font-size: 15px;position: relative;top: 3px;color: #000;line-height: 30px;">{{item.name}}</view>
-          <view class="info" style="font-size: 12px;line-height: 22px;">擅长 {{item.course_desc}}</view>
-          <view class="info" style="font-size: 12px;line-height: 22px;">教龄 {{item.teaching_age}}年教龄</view>
-        </view>
-        <view class="weui-cell__hd">
-          <image style="width: 76px;height: 76px;border-radius: 100%;" mode="aspectFill" src="{{item.logo}}/spic" />
-        </view>
-
+      <view class="weui-cell__ft clearfix">
+        <a href="javascript:void(0)" class="buy-btn">我想要</a>
       </view>
-    </view>
-    <view class="weui-cells weui-cells_after-title back-color" hidden="{{teacher_list.length==0}}" style="overflow-x: auto;" wx:else="">
-      <view class="padding0 clearfix" style="padding: 0 2px;">
-        <scroll-view class="scroll-view_H" scroll-x style="width: {{(teacher_list.length*104)+2}}px;height: 150px;">
-          <view class="org-teacher-wrap" bindtap="bindShowTeacherInfo" wx:for="{{teacher_list}}" wx:for-index="idx" wx:key="" data-id="{{item.id}}">
-            <image src="{{item.logo}}/spic" />
-            <span style="font-size: 15px;color: #000;line-height: 22px;margin-top: 8px;">{{item.name}}
-              <abbr>{{item.course_desc}}</abbr>
-            </span>
-          </view>
-        </scroll-view>
-
-
-      </view>
-    </view>
-    <view class="weui-cells weui-cells_after-title back-color" wx:if="{{brand_info.video_url!=''}}">
-      <view class="weui-cell border-bottom">
-        <view class="weui-cell__bd">{{titleArr.index_3}}
-          <abbr style="background-color: {{confrimBgColot}};"></abbr>
-        </view>
-        <view class="weui-cell__ft webkit-box-flex" style="font-size: 12px;"></view>
-      </view>
-      <view class="weui-cell" style="padding: 8px 15px 0px;height: 391rpx;overflow: hidden;">
-        <view class="weui-cell__bd show-video-wrap" bindtap="bindShowvideo" hidden="{{showVideoStatus}}" style="height: 391rpx;overflow: hidden;">
-          <image class="show-video" src="{{posterImg}}"></image>
-          <image class="show-video-btn" src="../../images/play-btn.png"></image>
-        </view>
-        <view class="weui-cell__bd show-video-wrap" hidden="{{!showVideoStatus}}" style="height: 391rpx;overflow: hidden;">
-          <video id="showVideoControl" style="position: static;" class="show-video" bindpause='bindpause' bindplay='bindplay' bindended="bindended"  src="{{showvideoUrl}}" style="width: 100%;height: 391rpx;" objectFit="contain" autoplay wx:if="{{showVideoStatus==true}}" controls></video>
-        </view>
-      </view>
-    </view>
-    <view class="weui-cells__title all-tip"></view>
-    <view class="weui-cells weui-cells_after-title  back-color">
-      <view class="weui-cell border-bottom">
-        <view class="weui-cell__bd">{{titleArr.index_4}}
-          <abbr style="background-color: {{confrimBgColot}};"></abbr>
-        </view>
-      </view>
-      <view class="org-detail-img  clearfix">
-        <view class="org-detail-list" wx:for="{{brand_info.env_small}}" data-len="{{brand_info.env.length}}" wx:for-index="idx" wx:key="">
-          <image src="{{item}}" mode="aspectFill" bindtap="showimage" data-itemkey="{{idx}}" />
-        </view>
-      </view>
-    </view>
-    <view class="weui-footer">
-      <image src="../../images/default-logo.png"></image>
-      <p>番茄助教提供技术支持</p>
     </view>
   </view>
-</view>
-<view class="fixed-footer" hidden="{{!showLoading}}">
-  <view class="weui-cell__bd">
-    <image src="../../images/share.png"></image>分享
-    <button open-type="share"></button>
+  <view class="weui-cells order-list  border-none com-bg-color">
+    <view class="weui-cell">
+      <view class="weui-cell__hd clearfix">
+        <image src="https://img.meiyuol.com/181/org_yBF35c4MhS6BTxpcKhkzebM.png/spic"></image>
+      </view>
+      <view class="weui-cell__bd order-info rl clearfix">
+        <text class="weui-media-box__title">娃哈哈</text>
+        <p class="weui-media-box__desc">北京市海淀区 | 距你2.3公里 | 29分钟前来过</p>
+      </view>
+    </view>
+    <scroll-view class="scroll-view_H" scroll-x>
+      <view class="img-list-wrap clearfix" style="min-width: 960rpx;">
+        <image src="https://img.meiyuol.com/181/org_yBF35c4MhS6BTxpcKhkzebM.png/spic" />
+        <image src="https://img.meiyuol.com/181/org_yBF35c4MhS6BTxpcKhkzebM.png/spic" />
+        <image src="https://img.meiyuol.com/181/org_yBF35c4MhS6BTxpcKhkzebM.png/spic" />
+        <image src="https://img.meiyuol.com/181/org_yBF35c4MhS6BTxpcKhkzebM.png/spic" />
+      </view>
+    </scroll-view>
+    <p class="order-intro">服务号：为企业和组织提供更强大的业务服务与用户管理能力，主要偏向服务类交互（功能类似12315，114，银行，提供绑定信息，服务交互的）；</p>
+    <view class="weui-cell">
+      <view class="weui-cell__bd clearfix">
+        免费
+      </view>
+      <view class="weui-cell__ft clearfix">
+        娃哈哈
+      </view>
+    </view>
   </view>
-  <view class="weui-cell__bd" bindtap="bindShowMoreCampus">
-    <image src="../../images/xiaoqu.png"></image>{{titleArr.index_tab_2}}
+  <view class="weui-cells weui-cells_after-title" hidden="{{noneData}}">
+    <view class="common-none-data-wrap">
+      <image src="../../images/none-data.png"></image>
+      <span>还没有相关数据</span>
+    </view>
   </view>
-  <view class="weui-cell__bd" bindtap="makePhoneCall">
-    <image src="../../images/tel.png"></image>电话
+  <view class="weui-cells border-none fixed-bootm-footer">
+    <view class="weui-cell clearfix">
+      <view class="weui-cell__hd">
+        <image src="../../images/home_.png"></image><span>首页</span>
+      </view>
+      <view class="weui-cell__hd send-btn">
+        <image class="" src="../../images/send.png"></image><span style="top: 22rpx;">发布</span>
+      </view>
+      <view class="weui-cell__hd">
+        <image src="../../images/my.png"></image><span>我的</span>
+      </view>
+    </view>
   </view>
-  <view class="weui-cell__hd" bindtap="bindAppoint" style="background-color: {{confrimBgColot}};color: {{confrimFtColot}}">
-    {{titleArr.index_tab_4}}
-  </view>
-</view>
-
-<view class="play-video-wrap" hidden="{{!showVideoStatus}}" bindtouchstart="bindHideVideo" bindtap="bindHideVideo">
- 
 </view>

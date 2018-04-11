@@ -1,0 +1,28 @@
+.page {
+  background-color: #f2f3f7;
+}
+
+.userinfo {
+  display: block;
+  text-align: center;
+  height: 300rpx;
+  color: #fff;
+  font-size: 32rpx;
+  margin: 0 auto;
+  background-color: #fff;
+}
+.userinfo-avatar {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 100%;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  top: 40rpx;
+}
+.userinfo-none:after{
+  content: "";
+  border: none;
+}
+.user-course,.user-static,.user-about,.user-contact,.user-version {width: 20px;height: 20px;position: relative;top: 4px;margin-right: 9px;}
+.userinfo span {display: block;line-height: 52rpx;font-size: 32rpx;color: #000;margin-top: 36rpx;}

@@ -1,19 +1,19 @@
 {
-  "pages":[
-    "pages/index/index",
-    "pages/courselist/courselist",
-    "pages/courseinfo/courseinfo",
-    "pages/teacherlist/teacherlist",
-    "pages/teacherinfo/teacherinfo",
-    "pages/appointment/appointment",
-    "pages/brandintro/brandintro",
-    "pages/campus/campus",
-    "pages/showvideo/showvideo"
+  "pages": [
+      "pages/index/index",
+      "pages/userinfo/userinfo"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#c6eaf9",
-    "navigationBarTitleText": "",
-    "navigationBarTextStyle":"#01617b"
-  }
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ff6464",
+    "navigationBarTitleText": "番茄拼课",
+    "navigationBarTextStyle": "#fff",
+    "backgroundColor": "#eee",
+    "enablePullDownRefresh": false
+  },
+  "networkTimeout": {
+    "request": 60000,
+    "downloadFile": 10000
+  },
+  "debug": true
 }

@@ -1,0 +1,7 @@
+<template name="search-loading-item">
+  <view class="weui-loadmore" style="width: 100%;height: 30px;position: absolute;top:0px;left: 0;z-index: 2;">
+    <view class="weui-loading">
+    </view>
+    <view class="weui-loadmore__tips">努力搜索中...</view>
+  </view>
+</template>
