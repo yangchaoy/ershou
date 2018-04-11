@@ -1,7 +1,10 @@
 {
   "pages": [
       "pages/index/index",
-      "pages/userinfo/userinfo"
+      "pages/userinfo/userinfo",
+      "pages/mypublish/mypublish",
+      "pages/message/message",
+      "pages/gopublish/gopublish"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -10,6 +13,38 @@
     "navigationBarTextStyle": "#fff",
     "backgroundColor": "#eee",
     "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#808081",
+    "selectedColor": "#ff5a5b",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/work-normal.png",
+        "selectedIconPath": "images/work-selected.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/mypublish/mypublish",
+        "iconPath": "images/user-normal.png",
+        "selectedIconPath": "images/user-selected.png",
+        "text": "发布"
+      },
+      {
+        "pagePath": "pages/gopublish/gopublish",
+        "iconPath": "images/work-normal.png",
+        "selectedIconPath": "images/work-selected.png",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/userinfo/userinfo",
+        "iconPath": "images/user-normal.png",
+        "selectedIconPath": "images/user-selected.png",
+        "text": "我的"
+      }
+    ]
   },
   "networkTimeout": {
     "request": 60000,

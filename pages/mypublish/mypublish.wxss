@@ -1,0 +1,5 @@
+.publish-list {margin-top: 20rpx;background-color: #fff;}
+.publish-list image {display: block;width: 154rpx;height: 154rpx;margin-right: 30rpx;}
+.publish-list span {display: block;line-height: 86rpx;font-size: 36rpx;color: #ee4c63;}
+.weui-cell__ft {height: 52rpx;}
+.buy-btn {color: #ee4c63;font-size: 28rpx;width: 120rpx;line-height:52rpx;height:52rpx;text-align: center;display: block;border-radius: 8rpx;border: 1rpx #ee4c63 solid;position: absolute;right: 0;top: 0;}

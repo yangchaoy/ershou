@@ -48,12 +48,12 @@
       </view>
     </scroll-view>
     <p class="order-intro">服务号：为企业和组织提供更强大的业务服务与用户管理能力，主要偏向服务类交互（功能类似12315，114，银行，提供绑定信息，服务交互的）；</p>
-    <view class="weui-cell">
+     <view class="weui-cell show-info-wrap">
       <view class="weui-cell__bd clearfix">
         免费
       </view>
       <view class="weui-cell__ft clearfix">
-        娃哈哈
+        <a href="javascript:void(0)" class="buy-btn">我想要</a>
       </view>
     </view>
   </view>
@@ -63,7 +63,7 @@
       <span>还没有相关数据</span>
     </view>
   </view>
-  <view class="weui-cells border-none fixed-bootm-footer">
+  <!-- <view class="weui-cells border-none fixed-bootm-footer">
     <view class="weui-cell clearfix">
       <view class="weui-cell__hd">
         <image src="../../images/home_.png"></image><span>首页</span>
@@ -75,5 +75,5 @@
         <image src="../../images/my.png"></image><span>我的</span>
       </view>
     </view>
-  </view>
+  </view> -->
 </view>

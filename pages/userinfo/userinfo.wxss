@@ -1,7 +1,3 @@
-.page {
-  background-color: #f2f3f7;
-}
-
 .userinfo {
   display: block;
   text-align: center;
@@ -26,3 +22,4 @@
 }
 .user-course,.user-static,.user-about,.user-contact,.user-version {width: 20px;height: 20px;position: relative;top: 4px;margin-right: 9px;}
 .userinfo span {display: block;line-height: 52rpx;font-size: 32rpx;color: #000;margin-top: 36rpx;}
+.weui-cell__ft {color: #ee4c63;font-size: 28rpx;}

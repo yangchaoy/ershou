@@ -1,0 +1,16 @@
+<view class="page">
+  <form bindsubmit="formBindsubmitClass" bindreset="formResetClass" report-submit>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input input-weui select-charge-pic-wrap clearfix">
+          <view class="charge-pic" wx:for="{{selectPicArr}}" wx:for-index="idx" wx:key=""> <image  src="{{item}}"></image><abbr bindtap="deletepic" data-index="{{item}}"></abbr></view>
+          <view class="add-charge-pic" bindtap="selectpic" hidden="{{selectPicArr.length>=3}}">
+            <image src="../../images/add.png"></image>
+          </view>
+      </view>
+    </view>
+   <view class="weui-btn-area fixed-button">
+      <button class="weui-btn" formType="submit" type="warn">提交</button>
+    </view>
+  </form>
+  <text class="weui_toptips weui_warn">{{nametip}}</text>
+</view>

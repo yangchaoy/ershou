@@ -19,3 +19,17 @@
 .weui-cell:before  {border: none;}
 .weui-cell:after {content: '';border-bottom: 1rpx red solid;}
 .weui-cells__title {margin: 0;padding: 12rpx 30rpx;font-size: 24rpx;color: #bab9be;line-height: 30rpx;}
+.fixed-button {
+	position: fixed;
+	z-index: 2;
+	bottom: 0;
+	background-color: #fff;
+	padding: 15px 0 15px;
+	margin: 0;
+	width: 100%;
+}
+
+.fixed-button .weui-btn {
+	width: 92%;
+	margin: 0 auto
+}
