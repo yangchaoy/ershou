@@ -1,14 +1,42 @@
 <view class="page">
-  <form bindsubmit="formBindsubmitClass" bindreset="formResetClass" report-submit>
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input input-weui select-charge-pic-wrap clearfix">
-          <view class="charge-pic" wx:for="{{selectPicArr}}" wx:for-index="idx" wx:key=""> <image  src="{{item}}"></image><abbr bindtap="deletepic" data-index="{{item}}"></abbr></view>
-          <view class="add-charge-pic" bindtap="selectpic" hidden="{{selectPicArr.length>=3}}">
-            <image src="../../images/add.png"></image>
-          </view>
+  <form bindsubmit="formBindsubmit" bindreset="formResetClass" report-submit>
+    <view class="select-charge-pic-wrap clearfix">
+      <view class="charge-pic" wx:for="{{selectPicArr}}" wx:for-index="idx" wx:key="">
+        <image src="{{item}}" mode="aspectFill"></image>
+        <abbr bindtap="deletepic" data-index="{{item}}"></abbr>
+      </view>
+      <view class="add-charge-pic" bindtap="selectpic" hidden="{{selectPicArr.length>=9}}">
+        <image src="../../images/add.png"></image>
       </view>
     </view>
-   <view class="weui-btn-area fixed-button">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell" style="padding-bottom: 0;">
+        <view class="weui-cell__bd">
+          <input type="text" class="charge-name" value="" bindinput="bindinputstudent" name="title" placeholder="为闲置宝贝取个诱人的名字吧" />
+        </view>
+      </view>
+      <textarea name="descr" class="charge-info" placeholder="在这里详细描述下你的宝贝吧,如品牌、规格、成色、购买渠道、转手原因等" maxlength="1000" height="200rpx;" />
+      <view class="weui-cell">
+        <view class="weui-cell__bd choose-address" bindtap="bindSelectMap">
+          <image src="../../images/address2.png"></image>{{selectLessonAddress.name}}
+        </view>
+        <view class="weui-cell__ft">
+          <radio-group>
+            <view class="weui-cells weui-cells_after-title" bindtap="checkboxSelect">
+              <view class="weui-cell select-all-checkbox" class="padding0">
+                <checkbox class="weui-check" value="1" checked="{{allSelect}}" />
+                <view class="weui-cell__bd weui-check__hd_in-checkbox">
+                  <icon class="weui-icon-checkbox_circle" type="circle" size="20" wx:if="{{!allSelect}}"></icon>
+                  <icon class="weui-icon-checkbox_success" type="success" size="20" wx:if="{{allSelect}}"></icon>全新宝贝
+                </view>
+              </view>
+            </view>
+          </radio-group>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-btn-area fixed-button">
       <button class="weui-btn" formType="submit" type="warn">提交</button>
     </view>
   </form>

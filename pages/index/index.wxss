@@ -10,3 +10,6 @@
 .show-info-wrap {color: #ee4c63;font-size: 36rpx;}
 .buy-btn {background-color: #ee4c63;font-size: 26rpx;color: #fff;width: 120rpx;line-height:56rpx;height:56rpx;text-align: center;display: block;border-radius: 8rpx;}
 .weui-cells__title image {width: 22rpx;height: 28rpx;position: relative;top: 4rpx;margin-right: 12rpx;}
+.publish-btn {width: 80rpx;height: 80rpx;position: fixed;bottom: 20rpx;left: 50%;margin-left: -40rpx;z-index: 5;}
+.none-more-info {display: block;color: #a3a3a3;font-size: 12px;line-height: 30px;text-align: center;padding-bottom: 8px;}
+.weui-loadmore__tips {color: #999;}

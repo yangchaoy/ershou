@@ -1,8 +1,5 @@
 module.exports = {
-  // configUrl: 'https://api.dev.meiyuol.com/pk/',
-  // configUrl: 'https://api.meiyuonline.com/pk/',
-  // configShareUrl: 'https://api.meiyuonline.com'
-
-  configUrl: 'https://api2.meiyuonline.com/pk/',
-  configShareUrl: 'https://api2.meiyuonline.com'
+  configUrl: 'https://xapi.youcai.xin/idle/',
+  qqMapApi: 'https://apis.map.qq.com/ws/geocoder/v',
+  qqUserkey: 'LGCBZ - VNNKJ - ZL4FA - KIW42 - QKIEO - 6HB6X'
 }  

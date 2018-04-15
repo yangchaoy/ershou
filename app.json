@@ -27,13 +27,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/mypublish/mypublish",
-        "iconPath": "images/user-normal.png",
-        "selectedIconPath": "images/user-selected.png",
-        "text": "发布"
-      },
-      {
-        "pagePath": "pages/gopublish/gopublish",
+        "pagePath": "pages/message/message",
         "iconPath": "images/work-normal.png",
         "selectedIconPath": "images/work-selected.png",
         "text": "消息"

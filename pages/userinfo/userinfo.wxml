@@ -1,10 +1,10 @@
 <view class="page" style="margin-bottom: 20px;padding-bottom: 20px;">
   <view class="userinfo userinfo-none">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
-    <span>{{userInfo.nickName}}</span>
+    <image class="userinfo-avatar" src="{{userInfo.avatarurl}}"></image>
+    <span>{{userInfo.nickname}}</span>
   </view>
   <view class="weui-cells__title all-tip"></view>
-  <view class="weui-cells weui-cells_after-title">
+  <view class="weui-cells weui-cells_after-title" bindtap="bindMypublish">
     <view class="weui-cell" hover-class="weui-cell_active" bindtap="bingSetOrg">
       <view class="weui-cell__bd">
         <image class="user-course" src="../../images/send2.png"></image>我的发布

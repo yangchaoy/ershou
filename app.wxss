@@ -3,6 +3,7 @@
 .fl {float: left;}
 
 .clearfix:after{content:' ';display:block;clear:both;visibility:hidden;line-height:0;height:0}
+.padding0 {padding: 0 30rpx;padding-right: 0;}
 .weui-media-box__title {font-size: 30rpx;line-height: 40rpx;color: #606060;}
 .weui-media-box__desc {line-height: 36rpx;font-size: 24rpx;}
 .weui-cell__ft {font-size: 24rpx;color: #9c9c9c;}

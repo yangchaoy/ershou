@@ -1,7 +1,11 @@
+var mapApi = {
+  qqMapApi: 'http://apis.map.qq.com/ws/geocoder/v1/',
+  qqUserkey: 'LGCBZ - VNNKJ - ZL4FA - KIW42 - QKIEO - 6HB6X'
+}
+var config = require('/../../utils/configurl.js');
+var util = require('/../../utils/util.js');
 Page({
   data: {
-    courseName: '',
-    courseNameTip: true,
     nametip: '',
     studentNumberTip: true,
     selectnothingstatus: true,
@@ -11,7 +15,9 @@ Page({
     uploadedmediadata: [],
     itemName: '',
     itemValue: '',
-    itemPrice: ''
+    itemPrice: '',
+    allSelect: true,
+    brandnew: 1
   },
   selectpic: function () {
     var that = this;
@@ -123,5 +129,105 @@ Page({
     })
   },
   onLoad: function (options) {
+  },
+  onShow: function () {
+    var that = this;
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        console.log(res)
+        var latitude = res.latitude
+        var longitude = res.longitude
+        // util.showAddress(latitude, longitude);
+      }
+    })
+  },
+  bindSelectMap: function () {
+    var that = this;
+    wx.chooseLocation({
+      success: function (res) {
+        wx.setStorageSync('get_position', '1')
+        var addressInfo = {
+          address: res.address,
+          name: res.name,
+          latitude: res.latitude,
+          longitude: res.longitude,
+        }
+        that.setData({
+          selectLessonAddress: res,
+          poiwx: JSON.stringify(addressInfo)
+        })
+        console.log(that.data.selectLessonAddress)
+      },
+      fail: function (res) {
+        if (res.errMsg == "chooseLocation:fail auth deny") {
+          wx.showModal({
+            title: '温馨提示',
+            content: '您还没有授权"运势计算器"获取您的地理位置，是否开启授权',
+            confirmText: '开启',
+            success: function (res) {
+              if (res.confirm) {
+                wx.openSetting({
+                  success: (res) => { wx.setStorageSync('get_position', '1') }
+                })
+              }
+            }
+          })
+        }
+      }
+    })
+  },
+  checkboxSelect: function () {
+    var that = this;
+    this.setData({
+      allSelect: !that.data.allSelect
+    })
+    if (this.data.allSelect) {
+      that.setData({
+        brandnew: 1
+      })
+    }
+    else {
+      that.setData({
+        brandnew: 0
+      })
+    }
+  },
+  formBindsubmit: function (e) {
+    var that = this;
+    console.log(e.detail.value)
+    var submitData = {
+      "title": e.detail.value.title.trim(),
+      "descr": e.detail.value.descr.trim(),
+      "imgs": ["http://p3.pstatp.com/origin/pgc-image/1523586871254a62e46d6b0", "http://p9.pstatp.com/origin/pgc-image/1523586871677fd749243ad"],
+      "brandnew": that.data.brandnew,
+      "place": that.data.selectLessonAddress.name,
+      "address": that.data.selectLessonAddress.address,
+      "longitude": that.data.selectLessonAddress.longitude,
+      "latitude": that.data.selectLessonAddress.latitude
+    }
+
+    wx.showToast({
+      title: '提交中,请稍候..',
+      icon: 'loading',
+      mask: true,
+      duration: 300000
+    });
+
+    util.diyrequest(
+      config.configUrl + 'item',
+      submitData,
+      "POST",
+      function (request) {
+        wx.hideToast();
+        if (request.data.code == undefined) {
+          wx.navigateBack();
+        }
+        else {
+        }
+      },
+      function (request) { }
+    )
   }
+
 });
