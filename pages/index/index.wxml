@@ -1,19 +1,19 @@
  <view class="page">
   <view class="weui-cells__title all-tip">
-    <image src="../../images/address.png"></image>北京市朝阳区通惠河大厦15层</view>
-  <view class="weui-cells order-list  border-none com-bg-color" wx:for="{{itemList}}" wx:key="">
+    <image src="../../images/address.png"></image>{{curAddress}}</view>
+  <view class="weui-cells order-list  border-none com-bg-color" wx:for="{{itemListArr}}" wx:key="" wx:for-index="idx">
     <view class="weui-cell">
       <view class="weui-cell__hd clearfix">
         <image src="{{item.avatarurl}}"></image>
       </view>
       <view class="weui-cell__bd order-info rl clearfix">
         <text class="weui-media-box__title">{{item.nickname}}</text>
-        <p class="weui-media-box__desc">{{item.address}} | 距你2.3公里 | 29分钟前来过</p>
+        <p class="weui-media-box__desc">{{item.address}} | 距你{{item.distance}}公里 | 29分钟前来过</p>
       </view>
     </view>
     <scroll-view class="scroll-view_H" scroll-x>
       <view class="img-list-wrap clearfix" style="min-width: 100%;width: {{item.imgs.length*224}}rpx;" data-index="{{item.imgs.length}}">
-        <image  wx:for="{{item.imgs}}" mode="aspectFill" wx:for-item="itemImg" wx:key="" src="{{itemImg}}" />
+        <image  wx:for="{{item.imgs}}" mode="aspectFill" data-index="{{idx}}" bindtap="bindShowImg" wx:for-item="itemImg" wx:key="" src="{{itemImg}}"  wx:for-index="imgIdx" data-img="{{imgIdx}}"/>
       </view>
     </scroll-view>
     <p class="order-intro">{{item.descr}}</p>

@@ -1,1 +1,10 @@
-/* pages/message/message.wxss */
+.publish-list {margin-top: 20rpx;background-color: #fff;}
+.publish-list image {display: block;width: 120rpx;height: 120rpx;margin-right: 30rpx;border-radius: 60rpx;}
+.publish-list span {display: block;line-height: 68rpx;font-size: 24rpx;color: #bab9be;}
+.buy-btn {color: #ee4c63;font-size: 28rpx;width: 120rpx;line-height:52rpx;height:52rpx;text-align: center;display: block;border-radius: 8rpx;border: 1rpx #ee4c63 solid;position: absolute;right: 0;top: 0;}
+.weui-media-box__title {color: #5d5d5d;font-size: 32rpx;}
+.publish-list .weui-cell__ft image {height: 154rpx;width: 154rpx;margin-right: 0;border-radius: 0;}
+.weui-cell:first-child:after {display: block;border-bottom: 1rpx #f0f0f0 solid;}
+.weui-cells:before {display: none;}
+.weui-cell:before{content:" ";position:absolute;top:0;height:1px;border-top:1rpx solid #f0f0f0;color:#f0f0f0;left:150rpx;right: 0rpx;}
+.weui-cells:after,.weui-cell:before {content: "";left: 150rpx;right: 0rpx;}

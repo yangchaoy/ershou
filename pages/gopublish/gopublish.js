@@ -132,14 +132,16 @@ Page({
   },
   onShow: function () {
     var that = this;
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
-        console.log(res)
-        var latitude = res.latitude
-        var longitude = res.longitude
-        // util.showAddress(latitude, longitude);
-      }
+    var curAddress = wx.getStorageSync('address');
+    console.log(curAddress)
+    var poData = {
+      address: curAddress.address,
+      name: curAddress.formatted_addresses.recommend,
+      latitude: curAddress.location.lat,
+      longitude: curAddress.lng
+    }
+    that.setData({
+      selectLessonAddress: poData
     })
   },
   bindSelectMap: function () {

@@ -36,35 +36,12 @@ Page({
 
         if (request.data.code == undefined) {
           if (request.data.length > 0) {
-            // 加载更多判断
-            if (that.data.limitNum == request.data.length) {
-              that.setData({
-                hasLoadMore: true,
-                showNoneInfo: true
-              })
-              that.data.lastId = request.data[request.data.length - 1].id
-            }
-            else {
-              that.setData({
-                hasLoadMore: false,
-                showLoadingStatus: true,
-                showNoneInfo: false
-              })
-            }
-
-            that.data.itemListArr = that.data.itemListArr.concat(request.data);
-            if (that.data.itemListArr.length < 5) {
-              that.setData({
-                showNoneInfo: true
-              })
-            }
             that.setData({
               noneData: true,
-              itemList: that.data.itemListArr
+              itemList: request.data
             })
           }
           else {
-            that.data.itemListArr = [];
             that.setData({
               itemList: [],
               noneData: false,
@@ -80,53 +57,47 @@ Page({
     )
   },
   bindPublish: function () {
-    console.log(111);
     wx.navigateTo({
       url: '../gopublish/gopublish'
     })
   },
-  onPullDownRefresh: function (e) {
-    wx.showNavigationBarLoading();
-    this.setData({
-      hasLoadMore: true,
-      showLoadingStatus: true
-    })
-    this.data.lastId = 0;
-    this.data.itemListArr = [];
-    this.onShow();
+  // onPullDownRefresh: function (e) {
+  //   wx.showNavigationBarLoading();
+  //   this.setData({
+  //     hasLoadMore: true,
+  //     showLoadingStatus: true
+  //   })
+  //   this.data.lastId = 0;
+  //   this.data.itemListArr = [];
+  //   this.onShow();
 
-  },
-  onReachBottom: function (e) {
-    var that = this;
-    if (that.data.hasLoadMore) {
-      that.setData({
-        hasLoadMore: false,
-        showLoadingStatus: false
-      })
-      that.onShow();
-    }
-  },
+  // },
+  // onReachBottom: function (e) {
+  //   var that = this;
+  //   if (that.data.hasLoadMore) {
+  //     that.setData({
+  //       hasLoadMore: false,
+  //       showLoadingStatus: false
+  //     })
+  //     that.onShow();
+  //   }
+  // },
   bindDelete: function(e){
     var itemid = e.currentTarget.dataset.id;
+    var that = this;
     wx.showModal({
       title: '温馨提示',
       content: '确认下架当前商品?',
-      confirmText: '确定',
+      confirmText: '下架',
       success: function (res) {
         if (res.confirm) {
           util.diyrequest(
-            config.configUrl + 'item',
-            {
-              id: itemid
-            },
+            config.configUrl + 'item/' + itemid,
+            {},
             "DELETE",
             function (request) {
               if (request.data.code == undefined) {
-                if (request.data.length > 0) {
-                }
-                else {
-                 
-                }
+               that.onShow();
               }
               else {
 

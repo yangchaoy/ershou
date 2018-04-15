@@ -21,12 +21,43 @@ Page({
         duration: 1000
       });
     }
-
+    wx.getLocation({
+      type: 'gcj02',
+      success: function (res) {
+        var latitude = res.latitude;
+        var longitude = res.longitude;
+        that.setData({
+          latitude: latitude,
+          longitude: longitude
+        })
+        that.itemList();
+        var qqMapApi = config.qqMapApi + "?location=" + latitude + ',' +
+          longitude + "&key=" + config.qqUserkey + "&get_poi=1";
+        wx.request({
+          url: qqMapApi,
+          data: {},
+          method: 'GET',
+          success: (res) => {
+            if (res.statusCode == 200 && res.data.status == 0) {
+              wx.setStorageSync('address', res.data.result);
+              that.setData({
+                curAddress: res.data.result.address
+              })
+            }
+          }
+        })
+      }
+    })
+  },
+  itemList: function () {
+    var that = this;
     util.diyrequest(
       config.configUrl + 'item',
       {
         lastid: that.data.lastId,
-        limit: that.data.limitNum
+        limit: that.data.limitNum,
+        longitude: that.data.longitude,
+        latitude: that.data.latitude
       },
       "GET",
       function (request) {
@@ -60,13 +91,13 @@ Page({
             }
             that.setData({
               noneData: true,
-              itemList: that.data.itemListArr
+              itemListArr: that.data.itemListArr
             })
           }
           else {
             that.data.itemListArr = [];
             that.setData({
-              itemList: [],
+              itemListArr: [],
               noneData: false,
               showNoneInfo: true
             })
@@ -80,7 +111,6 @@ Page({
     )
   },
   bindPublish: function () {
-    console.log(111);
     wx.navigateTo({
       url: '../gopublish/gopublish'
     })
@@ -93,7 +123,7 @@ Page({
     })
     this.data.lastId = 0;
     this.data.itemListArr = [];
-    this.onShow();
+    this.itemList();
 
   },
   onReachBottom: function (e) {
@@ -103,7 +133,17 @@ Page({
         hasLoadMore: false,
         showLoadingStatus: false
       })
-      that.onShow();
+      that.itemList();
     }
+  },
+  bindShowImg: function (e) {
+    var index = e.currentTarget.dataset.index;
+    var imgIdx = e.currentTarget.dataset.img;
+    var that = this;
+    var that = this;
+    wx.previewImage({
+      current: that.data.itemListArr[index].imgs[imgIdx],
+      urls: that.data.itemListArr[index].imgs
+    })
   }
 })

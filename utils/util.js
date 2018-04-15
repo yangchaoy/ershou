@@ -282,27 +282,6 @@ function refreshsessionanddiyrequest(url, data, curtype, success, fail) {
   })
 }
 
-function showAddress(latitude, longitude) {
-  var that = this;
-  var qqMapApi = config.qqMapApi + "?location=" + latitude + ',' +
-    longitude + "&key=" + config.qqUserkey + "&get_poi=1";
-  wx.request({
-    url: qqMapApi,
-    data: {},
-    method: 'GET',
-    success: (res) => {
-      console.log(res)
-      if (res.statusCode == 200 && res.data.status == 0) {
-        that.setData({
-          nowWhere: (res.data.result.formatted_addresses.recommend).substr(0, 300),
-        });
-        wx.setStorageSync('address', res.data.result);
-      }
-    	}
-    })
-}
-
-
 
 module.exports = {
   uniqueArr: uniqueArr,
@@ -310,6 +289,5 @@ module.exports = {
   ellipsis: ellipsis,
   comrequest: comrequest,
   diyrequest: diyrequest,
-  checkSettingStatus: checkSettingStatus,
-  showAddress: showAddress
+  checkSettingStatus: checkSettingStatus
 };
