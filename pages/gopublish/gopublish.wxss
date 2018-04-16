@@ -85,7 +85,7 @@
 	width: 100%;
 	display: block;
 }
-.select-charge-pic-wrap .add-charge-pic,.select-charge-pic-wrap .charge-pic:last-child,.select-charge-pic-wrap .charge-pic:nth-child(3) {
+.select-charge-pic-wrap .add-charge-pic,.select-charge-pic-wrap .charge-pic:last-child,.select-charge-pic-wrap .charge-pic:nth-child(3n) {
 	margin-right: 0
 }
 .weui-cells:before,.weui-cells:after,.weui-cell:after,.weui-cell:before {

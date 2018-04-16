@@ -1,6 +1,10 @@
-var mapApi = {
-  qqMapApi: 'http://apis.map.qq.com/ws/geocoder/v1/',
-  qqUserkey: 'LGCBZ - VNNKJ - ZL4FA - KIW42 - QKIEO - 6HB6X'
+function comTip(con) {
+  wx.showToast({
+    title: con,
+    duration: 2000,
+    icon: 'none',
+    mask: true
+  })
 }
 var config = require('/../../utils/configurl.js');
 var util = require('/../../utils/util.js');
@@ -11,20 +15,19 @@ Page({
     selectnothingstatus: true,
     selectpicstatus: false,
     selectPicArr: [],
-    uploadedpicnum: 0,
     uploadedmediadata: [],
-    itemName: '',
-    itemValue: '',
-    itemPrice: '',
     allSelect: true,
-    brandnew: 1
+    brandnew: 1,
+    headerImgfiles: [],
+    groupmemberlimit: 0,
+    uploadedpicnum: 0,
   },
   selectpic: function () {
     var that = this;
     wx.setStorageSync('upload_maxsize', 5 * 1024 * 1024);
-    if (this.data.selectPicArr.length >= 3) {
+    if (this.data.selectPicArr.length >= 6) {
       wx.showToast({
-        title: '最多选择3张图片',
+        title: '最多选择6张图片',
         icon: 'success',
         duration: 2000,
         mask: true
@@ -39,7 +42,6 @@ Page({
         var tempFilePaths = res.tempFilePaths;
         var curArr = that.data.selectPicArr;
         var tempFile = res.tempFiles;
-
         for (var key = 0; key < tempFilePaths.length; key++) {
           if (tempFile[key].size > Number(1024 * 1024 * 5)) {
             wx.showModal({
@@ -56,7 +58,6 @@ Page({
           }
           else {
             curArr.push(tempFilePaths[key]);
-            wx.setStorageSync('has_loaction', '0');
           }
         }
         if (that.data.selectPicArr.length == 0) {
@@ -80,89 +81,54 @@ Page({
   },
   uploadpic: function () {
     var that = this;
-    wx.request({
-      url: 'https://xapi.youcai.xin/idle/qcloud/postobj',
-      success: function (res) {
-        console.log(res.data.url + res.data.key)
-        wx.uploadFile({
-          url: res.data.url,
-          filePath: tempFilePaths[0],
-          name: 'file',
-          formData: {
-            'Content-Type': 'image/jpeg',
-            key: res.data.key,
-            Signature: res.data.sign
-          },
-          success: function (res) {
-            console.log(res)
-          }
-        })
-      }
-    })
-    // wx.chooseImage({
-    //   success: function (res) {
-    //     console.log(res.data)
-    //     var tempFilePaths = res.tempFilePaths
-    //     wx.request({
-    //       url: 'https://xapi.youcai.xin/idle/qcloud/postobj',
-    //       success: function (res) {
-    //         console.log(res.data.url + res.data.key)
-    //         wx.uploadFile({
-    //           url: res.data.url,
-    //           filePath: tempFilePaths[0],
-    //           name: 'file',
-    //           formData: {
-    //             'Content-Type': 'image/jpeg',
-    //             key: res.data.key,
-    //             Signature: res.data.sign
-    //           },
-    //           success: function (res) {
-    //             console.log(res)
-    //           }
-    //         })
-    //       }
-    //     })
-    //   }
-    // })
-    // uploadImage(
-    //   {
-    //     filePath: that.data.selectPicArr[that.data.uploadedpicnum],
-    //     // dir:'',
-    //     uploadtype: 1,
-    //     success: function (res) {
-    //       var gethost = wx.getStorageSync('upload_host');
-    //       gethost = 'https://img.meiyuol.com';
-    //       that.data.uploadedmediadata.push(gethost + "/" + res);
-
-    //       that.data.uploadedpicnum++;
-    //       console.log(that.data.uploadedpicnum == that.data.selectPicArr.length);
-    //       console.log(that.data.selectPicArr.length)
-    //       if (that.data.uploadedpicnum == that.data.selectPicArr.length) {
-    //         that.data.selectPicArr = [];
-    //         that.formBindsubmitClass();
-    //       }
-    //       else {
-    //         that.uploadpic();
-    //       }
-    //     },
-    //     fail: function (res) {
-    //       wx.hideToast();
-
-    //       wx.showModal({
-    //         title: '温馨提示',
-    //         content: '图片上传失败,请重试~',
-    //         confirmText: '确定',
-    //         showCancel: false,
-    //         success: function (res) {
-    //           if (res.confirm) {
-
-    //           }
-    //         }
-    //       })
-
-    //       that.data.uploadedpicnum = 0
-    //     }
-    //   })
+   
+    util.comrequest(
+      config.configUrl + 'qcloud/postobj',
+      {},
+      "GET",
+      function (res) {
+        wx.hideToast();
+        if (res.data.code == undefined) {
+          console.log(res)
+          var resData = res;
+          wx.uploadFile({
+            url: res.data.url,
+            filePath: that.data.selectPicArr[that.data.uploadedpicnum],
+            name: 'file',
+            formData: {
+              'Content-Type': 'image/jpeg',
+              key: res.data.key,
+              Signature: res.data.sign
+            },
+            success: function (res) {
+              that.data.uploadedmediadata.push(resData.data.url + resData.data.key);
+              that.data.uploadedpicnum++;
+              if (that.data.uploadedpicnum == that.data.selectPicArr.length) {
+                that.formBindsubmit();
+              } else {
+                that.uploadpic();
+              }
+            },
+            fail: function () {
+              wx.hideToast();
+              wx.showModal({
+                title: '温馨提示',
+                content: '图片上传失败,请重试~',
+                confirmText: '确定',
+                showCancel: false,
+                success: function (res) {
+                  if (res.confirm) {
+                  }
+                }
+              })
+            }
+          })
+        }
+        else {
+        }
+      },
+      function (request) { }
+    )
   },
 
   deletepic: function (e) {
@@ -175,30 +141,35 @@ Page({
     })
   },
   onLoad: function (options) {
+    var that = this;
+    util.diyrequest(
+      config.configUrl + 'user',
+      {},
+      "GET",
+      function (request) {
+      },
+      function (request) { }
+    )
   },
   onShow: function () {
     var that = this;
-    if (wx.getStorageSync('has_loaction') == 1) {
-      var curAddress = wx.getStorageSync('address');
-      var poData = {
-        address: curAddress.address,
-        name: curAddress.formatted_addresses.recommend,
-        latitude: curAddress.location.lat,
-        longitude: curAddress.location.lng
-      }
-      that.setData({
-        selectLessonAddress: poData
-      })
-      wx.setStorageSync('has_loaction', '0');
+    var curAddress = wx.getStorageSync('address');
+    var poData = {
+      address: curAddress.address,
+      name: curAddress.formatted_addresses.recommend,
+      latitude: curAddress.location.lat,
+      longitude: curAddress.location.lng
     }
-
+    that.setData({
+      selectLessonAddress: poData
+    })
+    console.log(that.data.selectLessonAddress)
   },
   bindSelectMap: function () {
     var that = this;
     wx.chooseLocation({
       success: function (res) {
-        wx.setStorageSync('get_position', '1');
-        wx.setStorageSync('has_loaction', '0');
+        wx.setStorageSync('get_position', '1')
         var addressInfo = {
           address: res.address,
           name: res.name,
@@ -209,7 +180,6 @@ Page({
           selectLessonAddress: res,
           poiwx: JSON.stringify(addressInfo)
         })
-        console.log(that.data.selectLessonAddress)
       },
       fail: function (res) {
         if (res.errMsg == "chooseLocation:fail auth deny") {
@@ -247,40 +217,74 @@ Page({
   },
   formBindsubmit: function (e) {
     var that = this;
-    console.log(e.detail.value)
-    var submitData = {
-      "title": e.detail.value.title.trim(),
-      "descr": e.detail.value.descr.trim(),
-      "imgs": ["http://p3.pstatp.com/origin/pgc-image/1523586871254a62e46d6b0", "http://p9.pstatp.com/origin/pgc-image/1523586871677fd749243ad"],
-      "brandnew": that.data.brandnew,
-      "place": that.data.selectLessonAddress.name,
-      "address": that.data.selectLessonAddress.address,
-      "longitude": that.data.selectLessonAddress.longitude,
-      "latitude": that.data.selectLessonAddress.latitude
-    }
-
     wx.showToast({
-      title: '提交中,请稍候..',
+      title: '提交中,请稍候...',
       icon: 'loading',
       mask: true,
       duration: 300000
     });
 
-    util.diyrequest(
-      config.configUrl + 'item',
-      submitData,
-      "POST",
-      function (request) {
-        wx.hideToast();
-        console.log(request)
-        if (request.data.code == undefined) {
-          wx.navigateBack();
-        }
-        else {
-        }
-      },
-      function (request) { }
-    )
+    if (that.data.uploadedpicnum == 0) {
+      if (e.detail.value.title.trim().length == 0) {
+        comTip('提示：宝贝名称不能为空');
+        return false;
+      }
+      if (util.utf8_strlen(e.detail.value.title.trim()) > 60) {
+        comTip('提示：宝贝名称超长(中文30)！');
+        return false;
+      }
+
+      if (that.data.selectPicArr.length == 0) {
+        comTip('提示：请上传宣传头图！');
+        return false;
+      }
+      if (e.detail.value.descr.trim().length == 0) {
+        comTip('提示：请输入宝贝介绍！');
+        return false;
+      }
+      that.setData({
+        postname: e.detail.value.title.trim(),
+        wxaformid: e.detail.formId,
+        descr: e.detail.value.descr.trim()
+      })
+    }
+    if (that.data.uploadedpicnum == that.data.selectPicArr.length) {
+      var submitData = {
+        "title": that.data.postname,
+        "descr": that.data.descr,
+        "brandnew": that.data.brandnew,
+        "place": that.data.selectLessonAddress.name,
+        "address": that.data.selectLessonAddress.address,
+        "longitude": that.data.selectLessonAddress.longitude,
+        "latitude": that.data.selectLessonAddress.latitude,
+        "wxa_formid": that.data.wxaformid,
+        "imgs": that.data.uploadedmediadata
+      }
+      wx.showToast({
+        title: '提交中,请稍候...',
+        icon: 'loading',
+        mask: true,
+        duration: 300000
+      });
+      util.diyrequest(
+        config.configUrl + 'item',
+        submitData,
+        "POST",
+        function (request) {
+          wx.hideToast();
+          if (request.data.code == undefined) {
+            wx.navigateBack();
+          }
+          else {
+          }
+        },
+        function (request) { }
+      )
+    }
+    else {
+      that.uploadpic();
+    }
+
   }
 
 });

@@ -23,12 +23,18 @@ Page({
           that.setData({
             userInfo: request.data
           })
+          that.getAccount();
         }
         else {
         }
       },
       function (request) { }
     )
+   
+
+  },
+  getAccount: function(){
+    var that = this;
     util.comrequest(
       config.configUrl + 'item/count',
       {},
@@ -45,7 +51,6 @@ Page({
       },
       function (request) { }
     )
-
   },
   onShow: function () {
 

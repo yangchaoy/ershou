@@ -33,6 +33,7 @@ Page({
           method: 'GET',
           success: (res) => {
             if (res.statusCode == 200 && res.data.status == 0) {
+              console.log(res)
               wx.setStorageSync('address', res.data.result);
               that.setData({
                 curAddress: res.data.result.address

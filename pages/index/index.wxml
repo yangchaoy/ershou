@@ -12,7 +12,7 @@
       </view>
     </view>
     <scroll-view class="scroll-view_H" scroll-x>
-      <view class="img-list-wrap clearfix" style="min-width: 100%;width: {{item.imgs.length*224}}rpx;" data-index="{{item.imgs.length}}">
+      <view class="img-list-wrap clearfix" style="min-width: 100%;width: {{item.imgs.length*230}}rpx;" data-index="{{item.imgs.length}}">
         <image wx:for="{{item.imgs}}" mode="aspectFill" data-index="{{idx}}" bindtap="bindShowImg" wx:for-item="itemImg" wx:key="" src="{{itemImg}}" wx:for-index="imgIdx" data-img="{{imgIdx}}" />
       </view>
     </scroll-view>

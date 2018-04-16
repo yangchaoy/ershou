@@ -282,6 +282,32 @@ function refreshsessionanddiyrequest(url, data, curtype, success, fail) {
   })
 }
 
+function utf8_strlen(str) {
+  var str_encode = escape(str);
+  var cnt = 0;
+  for (var i = 0; i < str_encode.length; i++) {
+    if (str_encode.charAt(i) == "%") {
+      if (str_encode.charAt(i + 1) == "u") {
+        var value = parseInt(str_encode.substr(i + 2, 4), 16);
+        if (value < 0x0800) {
+          cnt += 2;
+        }
+        else {
+          cnt += 3;
+        }
+        i = i + 5;
+      }
+      else {
+        cnt++;
+        i = i + 2;
+      }
+    }
+    else {
+      cnt++;
+    }
+  }
+  return cnt;
+}
 
 module.exports = {
   uniqueArr: uniqueArr,
@@ -289,5 +315,6 @@ module.exports = {
   ellipsis: ellipsis,
   comrequest: comrequest,
   diyrequest: diyrequest,
-  checkSettingStatus: checkSettingStatus
+  checkSettingStatus: checkSettingStatus,
+  utf8_strlen: utf8_strlen
 };

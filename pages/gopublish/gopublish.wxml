@@ -5,14 +5,14 @@
         <image src="{{item}}" mode="aspectFill"></image>
         <abbr bindtap="deletepic" data-index="{{item}}"></abbr>
       </view>
-      <view class="add-charge-pic" bindtap="selectpic" hidden="{{selectPicArr.length>=9}}">
+      <view class="add-charge-pic" bindtap="selectpic" hidden="{{selectPicArr.length>=6}}">
         <image src="../../images/add.png"></image>
       </view>
     </view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell" style="padding-bottom: 0;">
         <view class="weui-cell__bd">
-          <input type="text" class="charge-name" value="" bindinput="bindinputstudent" name="title" placeholder="为闲置宝贝取个诱人的名字吧" />
+          <input type="text" class="charge-name" value="" name="title" placeholder="为闲置宝贝取个诱人的名字吧" />
         </view>
       </view>
       <textarea name="descr" class="charge-info" placeholder="在这里详细描述下你的宝贝吧,如品牌、规格、成色、购买渠道、转手原因等" maxlength="1000" height="200rpx;" />
