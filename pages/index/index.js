@@ -65,7 +65,7 @@ Page({
         if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
           wx.showModal({
             title: '是否授权当前位置',
-            content: '需要获取您的地理位置，否则将无法查看您周边发布的商品列表',
+            content: '免费二手需要获取您的地理位置，否则将无法查看您周边发布的商品列表',
             success: function (res) {
               if (res.cancel) {
                 that.onShow();

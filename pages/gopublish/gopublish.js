@@ -154,22 +154,26 @@ Page({
   onShow: function () {
     var that = this;
     var curAddress = wx.getStorageSync('address');
-    var poData = {
-      address: curAddress.address,
-      name: curAddress.formatted_addresses.recommend,
-      latitude: curAddress.location.lat,
-      longitude: curAddress.location.lng
+    if (wx.getStorageSync('has_loaction') == 1){
+      var poData = {
+        address: curAddress.address,
+        name: curAddress.formatted_addresses.recommend,
+        latitude: curAddress.location.lat,
+        longitude: curAddress.location.lng
+      }
+      that.setData({
+        selectLessonAddress: poData
+      })
+      console.log(that.data.selectLessonAddress)
     }
-    that.setData({
-      selectLessonAddress: poData
-    })
-    console.log(that.data.selectLessonAddress)
+   
   },
   bindSelectMap: function () {
     var that = this;
     wx.chooseLocation({
       success: function (res) {
-        wx.setStorageSync('get_position', '1')
+        wx.setStorageSync('get_position', '1');
+        wx.setStorageSync('has_loaction', '0')
         var addressInfo = {
           address: res.address,
           name: res.name,

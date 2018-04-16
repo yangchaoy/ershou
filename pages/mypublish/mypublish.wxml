@@ -3,7 +3,7 @@
     <view class="weui-cells">
       <view class="weui-cell">
         <view class="weui-cell__hd clearfix">
-          <image src="{{item.imgs[0]}}"></image>
+          <image mode="aspectFill" src="{{item.imgs[0]}}"></image>
         </view>
         <view class="weui-cell__bd order-info rl clearfix">
           <text class="weui-media-box__title">{{item.title}}</text>
