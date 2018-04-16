@@ -184,7 +184,7 @@ Page({
       hasLoadMore: true,
       showLoadingStatus: true
     })
-    this.data.initPageNum = 0;
+    this.data.initPageNum = 1;
     this.data.showImgStatus = 0;
     this.data.itemListArr = [];
     this.itemList();
