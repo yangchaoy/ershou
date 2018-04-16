@@ -11,12 +11,12 @@
           <p class="weui-media-box__desc">一小时前</p>
         </view>
         <view class="weui-cell__ft">
-          <image src="http://i0.pstatp.com/large/789000093071f4a87334" class="head-img"></image>
+          <image src="http://i0.pstatp.com/large/789000093071f4a87334" mode="aspectFill" class="head-img"></image>
         </view>
       </view>
       <view class="weui-cell">
         <view class="weui-cell__hd clearfix">
-          <image src="http://i0.pstatp.com/large/789000093071f4a87334" class="head-img"></image>
+          <image src="http://i0.pstatp.com/large/789000093071f4a87334" mode="aspectFill" class="head-img"></image>
         </view>
         <view class="weui-cell__bd order-info rl clearfix">
           <text class="weui-media-box__title">这个是什么问题呢</text>
@@ -24,12 +24,12 @@
           <p class="weui-media-box__desc">一小时前</p>
         </view>
         <view class="weui-cell__ft">
-          <image src="http://i0.pstatp.com/large/789000093071f4a87334" class="head-img"></image>
+          <image src="http://i0.pstatp.com/large/789000093071f4a87334" mode="aspectFill" class="head-img"></image>
         </view>
       </view>
       <view class="weui-cell">
         <view class="weui-cell__hd clearfix">
-          <image src="http://i0.pstatp.com/large/789000093071f4a87334" class="head-img"></image>
+          <image src="http://i0.pstatp.com/large/789000093071f4a87334" mode="aspectFill" class="head-img"></image>
         </view>
         <view class="weui-cell__bd order-info rl clearfix">
           <text class="weui-media-box__title">这个是什么问题呢</text>
@@ -37,7 +37,7 @@
           <p class="weui-media-box__desc">一小时前</p>
         </view>
         <view class="weui-cell__ft">
-          <image src="http://i0.pstatp.com/large/789000093071f4a87334" class="head-img"></image>
+          <image src="http://i0.pstatp.com/large/789000093071f4a87334" mode="aspectFill" class="head-img"></image>
         </view>
       </view>
     </view>

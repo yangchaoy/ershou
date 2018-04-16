@@ -9,7 +9,7 @@
       <view class="weui-cell__bd">
         <image class="user-course" src="../../images/send2.png"></image>我的发布
       </view>
-      <view class="weui-cell__ft webkit-box-flex weui-cell__ft_in-access">1</view>
+      <view class="weui-cell__ft webkit-box-flex weui-cell__ft_in-access">{{count}}</view>
     </view>
   </view>
   <view class="weui-cells__title all-tip"></view>

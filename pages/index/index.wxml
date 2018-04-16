@@ -1,4 +1,4 @@
- <view class="page">
+<view class="page">
   <view class="weui-cells__title all-tip">
     <image src="../../images/address.png"></image>{{curAddress}}</view>
   <view class="weui-cells order-list  border-none com-bg-color" wx:for="{{itemListArr}}" wx:key="" wx:for-index="idx">
@@ -8,12 +8,12 @@
       </view>
       <view class="weui-cell__bd order-info rl clearfix">
         <text class="weui-media-box__title">{{item.nickname}}</text>
-        <p class="weui-media-box__desc">{{item.address}} | 距你{{item.distance}}公里 | 29分钟前来过</p>
+        <p class="weui-media-box__desc">{{item.address}} | 距你{{item.distance/1000}}公里 | 29分钟前来过</p>
       </view>
     </view>
     <scroll-view class="scroll-view_H" scroll-x>
       <view class="img-list-wrap clearfix" style="min-width: 100%;width: {{item.imgs.length*224}}rpx;" data-index="{{item.imgs.length}}">
-        <image  wx:for="{{item.imgs}}" mode="aspectFill" data-index="{{idx}}" bindtap="bindShowImg" wx:for-item="itemImg" wx:key="" src="{{itemImg}}"  wx:for-index="imgIdx" data-img="{{imgIdx}}"/>
+        <image wx:for="{{item.imgs}}" mode="aspectFill" data-index="{{idx}}" bindtap="bindShowImg" wx:for-item="itemImg" wx:key="" src="{{itemImg}}" wx:for-index="imgIdx" data-img="{{imgIdx}}" />
       </view>
     </scroll-view>
     <p class="order-intro">{{item.descr}}</p>
@@ -26,47 +26,19 @@
       </view>
     </view>
   </view>
-  <!-- <view class="weui-cells order-list  border-none com-bg-color">
-    <view class="weui-cell">
-      <view class="weui-cell__hd clearfix">
-        <image src="https://img.meiyuol.com/181/org_yBF35c4MhS6BTxpcKhkzebM.png/spic"></image>
+  <view class="" hidden="{{showLoadingStatus}}">
+    <view class="weui-loadmore">
+      <view class="weui-loading">
       </view>
-      <view class="weui-cell__bd order-info rl clearfix">
-        <text class="weui-media-box__title">娃哈哈</text>
-        <p class="weui-media-box__desc">北京市海淀区 | 距你2.3公里 | 29分钟前来过</p>
-      </view>
+      <view class="weui-loadmore__tips">努力加载中...</view>
     </view>
-    <scroll-view class="scroll-view_H" scroll-x>
-      <view class="img-list-wrap clearfix" style="min-width: 960rpx;">
-        <image src="https://img.meiyuol.com/181/org_yBF35c4MhS6BTxpcKhkzebM.png/spic" />
-        <image src="https://img.meiyuol.com/181/org_yBF35c4MhS6BTxpcKhkzebM.png/spic" />
-        <image src="https://img.meiyuol.com/181/org_yBF35c4MhS6BTxpcKhkzebM.png/spic" />
-        <image src="https://img.meiyuol.com/181/org_yBF35c4MhS6BTxpcKhkzebM.png/spic" />
-      </view>
-    </scroll-view>
-    <p class="order-intro">服务号：为企业和组织提供更强大的业务服务与用户管理能力，主要偏向服务类交互（功能类似12315，114，银行，提供绑定信息，服务交互的）；</p>
-     <view class="weui-cell show-info-wrap">
-      <view class="weui-cell__bd clearfix">
-        免费
-      </view>
-      <view class="weui-cell__ft clearfix">
-        <a href="javascript:void(0)" class="buy-btn">我想要</a>
-      </view>
+  </view>
+  <view class="weui-cells weui-cells_after-title" hidden="{{noneData}}">
+    <view class="common-none-data-wrap">
+      <image src="../../images/none-data.png"></image>
+      <span>还没有相关数据</span>
     </view>
-  </view> -->
-   <view class="" hidden="{{showLoadingStatus}}">
-      <view class="weui-loadmore">
-        <view class="weui-loading">
-        </view>
-        <view class="weui-loadmore__tips">努力加载中...</view>
-      </view>
-    </view>
-    <view class="weui-cells weui-cells_after-title" hidden="{{noneData}}">
-      <view class="common-none-data-wrap">
-        <image src="../../images/none-data.png"></image>
-        <span>还没有相关数据</span>
-      </view>
-    </view>
-    <p class="none-more-info" wx:if="{{!showNoneInfo}}">没有更多数据了~</p>
+  </view>
+  <p class="none-more-info" wx:if="{{!showNoneInfo}}">没有更多数据了~</p>
   <image src="../../images/send.png" class="publish-btn" bindtap="bindPublish"></image>
 </view>

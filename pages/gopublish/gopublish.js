@@ -39,6 +39,7 @@ Page({
         var tempFilePaths = res.tempFilePaths;
         var curArr = that.data.selectPicArr;
         var tempFile = res.tempFiles;
+
         for (var key = 0; key < tempFilePaths.length; key++) {
           if (tempFile[key].size > Number(1024 * 1024 * 5)) {
             wx.showModal({
@@ -55,6 +56,7 @@ Page({
           }
           else {
             curArr.push(tempFilePaths[key]);
+            wx.setStorageSync('has_loaction', '0');
           }
         }
         if (that.data.selectPicArr.length == 0) {
@@ -132,23 +134,27 @@ Page({
   },
   onShow: function () {
     var that = this;
-    var curAddress = wx.getStorageSync('address');
-    console.log(curAddress)
-    var poData = {
-      address: curAddress.address,
-      name: curAddress.formatted_addresses.recommend,
-      latitude: curAddress.location.lat,
-      longitude: curAddress.lng
+    if(wx.getStorageSync('has_loaction') == 1){
+      var curAddress = wx.getStorageSync('address');
+      var poData = {
+        address: curAddress.address,
+        name: curAddress.formatted_addresses.recommend,
+        latitude: curAddress.location.lat,
+        longitude: curAddress.location.lng
+      }
+      that.setData({
+        selectLessonAddress: poData
+      })
+      wx.setStorageSync('has_loaction','0');
     }
-    that.setData({
-      selectLessonAddress: poData
-    })
+    
   },
   bindSelectMap: function () {
     var that = this;
     wx.chooseLocation({
       success: function (res) {
-        wx.setStorageSync('get_position', '1')
+        wx.setStorageSync('get_position', '1');
+        wx.setStorageSync('has_loaction', '0');
         var addressInfo = {
           address: res.address,
           name: res.name,
@@ -222,6 +228,7 @@ Page({
       "POST",
       function (request) {
         wx.hideToast();
+        console.log(request)
         if (request.data.code == undefined) {
           wx.navigateBack();
         }

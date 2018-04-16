@@ -18,4 +18,18 @@
       </view>
     </view>
   </view>
+  <view class="" hidden="{{showLoadingStatus}}">
+    <view class="weui-loadmore">
+      <view class="weui-loading">
+      </view>
+      <view class="weui-loadmore__tips">努力加载中...</view>
+    </view>
+  </view>
+  <view class="weui-cells weui-cells_after-title" hidden="{{noneData}}">
+    <view class="common-none-data-wrap">
+      <image src="../../images/none-data.png"></image>
+      <span>还没有相关数据</span>
+    </view>
+  </view>
+  <p class="none-more-info" wx:if="{{!showNoneInfo}}">没有更多数据了~</p>
 </view>

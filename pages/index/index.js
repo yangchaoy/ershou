@@ -9,18 +9,12 @@ Page({
     searchLoadingStatus: true,
     lastId: 0,
     limitNum: 5,
-    showNoneInfo: true
+    showNoneInfo: true,
+    showImgStatus: 1,
+    initPageNum: 1
   },
-  onShow: function () {
+  getLocation: function(){
     var that = this;
-    if (that.data.lastId == 0) {
-      wx.showToast({
-        title: '加载中,请稍候..',
-        icon: 'loading',
-        mask: true,
-        duration: 1000
-      });
-    }
     wx.getLocation({
       type: 'gcj02',
       success: function (res) {
@@ -49,12 +43,58 @@ Page({
       }
     })
   },
+  onShow: function () {
+    var that = this;
+    if (that.data.initPageNum == 1 && that.data.showImgStatus == 1) {
+      that.setData({
+        hasLoadMore: true,
+        showLoadingStatus: true
+      })
+      that.data.initPageNum = 1;
+      that.data.itemListArr = [];
+      wx.showToast({
+        title: '加载中,请稍候..',
+        icon: 'loading',
+        mask: true,
+        duration: 1000
+      });
+    }
+    wx.getSetting({
+      success: (res) => {
+        if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
+          wx.showModal({
+            title: '是否授权当前位置',
+            content: '需要获取您的地理位置，否则将无法查看您周边发布的商品列表',
+            success: function (res) {
+              if (res.cancel) {
+                that.onShow();
+              } else if (res.confirm) {
+                wx.openSetting({
+                  success: function (data) {
+                    if (data.authSetting["scope.userLocation"] == true) {
+                    } else {
+                      that.onShow();
+                    }
+                  }
+                })
+              }
+            }
+          })
+        }
+        else {
+          that.getLocation();
+        }
+      }
+    })
+
+
+  },
   itemList: function () {
     var that = this;
     util.diyrequest(
       config.configUrl + 'item',
       {
-        lastid: that.data.lastId,
+        page: that.data.initPageNum,
         limit: that.data.limitNum,
         longitude: that.data.longitude,
         latitude: that.data.latitude
@@ -64,7 +104,6 @@ Page({
         wx.hideToast();
         wx.hideNavigationBarLoading();
         wx.stopPullDownRefresh();
-
         if (request.data.code == undefined) {
           if (request.data.length > 0) {
             // 加载更多判断
@@ -73,7 +112,7 @@ Page({
                 hasLoadMore: true,
                 showNoneInfo: true
               })
-              that.data.lastId = request.data[request.data.length - 1].id
+
             }
             else {
               that.setData({
@@ -82,7 +121,6 @@ Page({
                 showNoneInfo: false
               })
             }
-
             that.data.itemListArr = that.data.itemListArr.concat(request.data);
             if (that.data.itemListArr.length < 5) {
               that.setData({
@@ -95,12 +133,34 @@ Page({
             })
           }
           else {
-            that.data.itemListArr = [];
-            that.setData({
-              itemListArr: [],
-              noneData: false,
-              showNoneInfo: true
-            })
+            if (that.data.itemListArr.length > 0) {
+              if (request.data.length == 0) {
+                that.setData({
+                  itemListArr: that.data.itemListArr,
+                  noneData: true,
+                  showNoneInfo: false,
+                  showLoadingStatus: true
+                })
+              }
+              else {
+                that.setData({
+                  itemListArr: that.data.itemListArr,
+                  noneData: true,
+                  showNoneInfo: false,
+                  showLoadingStatus: true
+                })
+              }
+
+            }
+            else {
+              that.data.itemListArr = [];
+              that.setData({
+                itemListArr: [],
+                noneData: false,
+                showNoneInfo: true,
+                showLoadingStatus: true
+              })
+            }
           }
         }
         else {
@@ -111,6 +171,8 @@ Page({
     )
   },
   bindPublish: function () {
+    wx.setStorageSync('has_loaction', '1');
+    this.data.showImgStatus = 1;
     wx.navigateTo({
       url: '../gopublish/gopublish'
     })
@@ -121,7 +183,8 @@ Page({
       hasLoadMore: true,
       showLoadingStatus: true
     })
-    this.data.lastId = 0;
+    this.data.initPageNum = 0;
+    this.data.showImgStatus = 0;
     this.data.itemListArr = [];
     this.itemList();
 
@@ -129,8 +192,11 @@ Page({
   onReachBottom: function (e) {
     var that = this;
     if (that.data.hasLoadMore) {
+      var curPage = Number(that.data.initPageNum);
+      curPage++;
       that.setData({
         hasLoadMore: false,
+        initPageNum: curPage++,
         showLoadingStatus: false
       })
       that.itemList();
@@ -139,7 +205,7 @@ Page({
   bindShowImg: function (e) {
     var index = e.currentTarget.dataset.index;
     var imgIdx = e.currentTarget.dataset.img;
-    var that = this;
+    this.data.showImgStatus = 0;
     var that = this;
     wx.previewImage({
       current: that.data.itemListArr[index].imgs[imgIdx],

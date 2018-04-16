@@ -34,3 +34,6 @@
 	width: 92%;
 	margin: 0 auto
 }
+.none-more-info {display: block;color: #a3a3a3;font-size: 12px;line-height: 36px;text-align: center;}
+.weui-loadmore__tips {color: #999;}
+.common-none-data-wrap{width:100%;height:260rpx;padding-top:180rpx;text-align:center;z-index:5;left:0;background-color:#f2f3f7}.common-none-data-wrap image{display:block;width:173rpx;height:176rpx;margin:0 auto}.common-none-data-wrap span{display:block;line-height:32rpx;margin-top:10rpx;font-size:14px;color:#949695;text-align:center}

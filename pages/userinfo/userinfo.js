@@ -11,7 +11,7 @@ Page({
       title: '加载中,请稍候..',
       icon: 'loading',
       mask: true,
-      duration: 1000
+      duration: 10000
     });
 
     util.diyrequest(
@@ -19,13 +19,26 @@ Page({
       {},
       "GET",
       function (request) {
-        wx.hideToast();
-        console.log(request)
         if (request.data.code == undefined) {
           that.setData({
             userInfo: request.data
           })
-          console.log(that.data.userInfo)
+        }
+        else {
+        }
+      },
+      function (request) { }
+    )
+    util.comrequest(
+      config.configUrl + 'item/count',
+      {},
+      "GET",
+      function (request) {
+        wx.hideToast();
+        if (request.data.code == undefined) {
+          that.setData({
+            count: request.data.count
+          })
         }
         else {
         }
