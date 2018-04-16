@@ -32,7 +32,7 @@ Page({
       return false;
     }
     wx.chooseImage({
-      count: 3 - that.data.selectPicArr.length, // 默认9
+      count: 6 - that.data.selectPicArr.length, // 默认9
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success: function (res) {
@@ -80,45 +80,89 @@ Page({
   },
   uploadpic: function () {
     var that = this;
-    uploadImage(
-      {
-        filePath: that.data.selectPicArr[that.data.uploadedpicnum],
-        // dir:'',
-        uploadtype: 1,
-        success: function (res) {
-          var gethost = wx.getStorageSync('upload_host');
-          gethost = 'https://img.meiyuol.com';
-          that.data.uploadedmediadata.push(gethost + "/" + res);
-
-          that.data.uploadedpicnum++;
-          console.log(that.data.uploadedpicnum == that.data.selectPicArr.length);
-          console.log(that.data.selectPicArr.length)
-          if (that.data.uploadedpicnum == that.data.selectPicArr.length) {
-            that.data.selectPicArr = [];
-            that.formBindsubmitClass();
+    wx.request({
+      url: 'https://xapi.youcai.xin/idle/qcloud/postobj',
+      success: function (res) {
+        console.log(res.data.url + res.data.key)
+        wx.uploadFile({
+          url: res.data.url,
+          filePath: tempFilePaths[0],
+          name: 'file',
+          formData: {
+            'Content-Type': 'image/jpeg',
+            key: res.data.key,
+            Signature: res.data.sign
+          },
+          success: function (res) {
+            console.log(res)
           }
-          else {
-            that.uploadpic();
-          }
-        },
-        fail: function (res) {
-          wx.hideToast();
+        })
+      }
+    })
+    // wx.chooseImage({
+    //   success: function (res) {
+    //     console.log(res.data)
+    //     var tempFilePaths = res.tempFilePaths
+    //     wx.request({
+    //       url: 'https://xapi.youcai.xin/idle/qcloud/postobj',
+    //       success: function (res) {
+    //         console.log(res.data.url + res.data.key)
+    //         wx.uploadFile({
+    //           url: res.data.url,
+    //           filePath: tempFilePaths[0],
+    //           name: 'file',
+    //           formData: {
+    //             'Content-Type': 'image/jpeg',
+    //             key: res.data.key,
+    //             Signature: res.data.sign
+    //           },
+    //           success: function (res) {
+    //             console.log(res)
+    //           }
+    //         })
+    //       }
+    //     })
+    //   }
+    // })
+    // uploadImage(
+    //   {
+    //     filePath: that.data.selectPicArr[that.data.uploadedpicnum],
+    //     // dir:'',
+    //     uploadtype: 1,
+    //     success: function (res) {
+    //       var gethost = wx.getStorageSync('upload_host');
+    //       gethost = 'https://img.meiyuol.com';
+    //       that.data.uploadedmediadata.push(gethost + "/" + res);
 
-          wx.showModal({
-            title: '温馨提示',
-            content: '图片上传失败,请重试~',
-            confirmText: '确定',
-            showCancel: false,
-            success: function (res) {
-              if (res.confirm) {
+    //       that.data.uploadedpicnum++;
+    //       console.log(that.data.uploadedpicnum == that.data.selectPicArr.length);
+    //       console.log(that.data.selectPicArr.length)
+    //       if (that.data.uploadedpicnum == that.data.selectPicArr.length) {
+    //         that.data.selectPicArr = [];
+    //         that.formBindsubmitClass();
+    //       }
+    //       else {
+    //         that.uploadpic();
+    //       }
+    //     },
+    //     fail: function (res) {
+    //       wx.hideToast();
 
-              }
-            }
-          })
+    //       wx.showModal({
+    //         title: '温馨提示',
+    //         content: '图片上传失败,请重试~',
+    //         confirmText: '确定',
+    //         showCancel: false,
+    //         success: function (res) {
+    //           if (res.confirm) {
 
-          that.data.uploadedpicnum = 0
-        }
-      })
+    //           }
+    //         }
+    //       })
+
+    //       that.data.uploadedpicnum = 0
+    //     }
+    //   })
   },
 
   deletepic: function (e) {
@@ -134,7 +178,7 @@ Page({
   },
   onShow: function () {
     var that = this;
-    if(wx.getStorageSync('has_loaction') == 1){
+    if (wx.getStorageSync('has_loaction') == 1) {
       var curAddress = wx.getStorageSync('address');
       var poData = {
         address: curAddress.address,
@@ -145,9 +189,9 @@ Page({
       that.setData({
         selectLessonAddress: poData
       })
-      wx.setStorageSync('has_loaction','0');
+      wx.setStorageSync('has_loaction', '0');
     }
-    
+
   },
   bindSelectMap: function () {
     var that = this;
